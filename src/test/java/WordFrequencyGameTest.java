@@ -60,6 +60,14 @@ public class WordFrequencyGameTest {
         validate_Input_words_process_to_expected_word(inputStr, expectResult);
     }
 
+    @Test
+    public void should_process_one_sentence_word_given_one_sentence_word_given() throws Exception {
+        //Given
+        String inputStr = "the";
+        String expectResult = "the 1";
+        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+    }
+
     private void validate_Input_words_process_to_expected_word(String inputStr, String expectResult) {
         WordFrequencyGame game = new WordFrequencyGame();
         //When
