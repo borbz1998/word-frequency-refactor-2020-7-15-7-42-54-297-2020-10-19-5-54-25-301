@@ -52,6 +52,14 @@ public class WordFrequencyGameTest {
         validate_Input_words_process_to_expected_word(inputStr, expectResult);
     }
 
+    @Test
+    public void should_process_sorted_with_count_descending_given_three_words() throws Exception {
+        //Given
+        String inputStr = "the is is that that that";
+        String expectResult = "that 3\nis 2\nthe 1";
+        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+    }
+
     private void validate_Input_words_process_to_expected_word(String inputStr, String expectResult) {
         WordFrequencyGame game = new WordFrequencyGame();
         //When

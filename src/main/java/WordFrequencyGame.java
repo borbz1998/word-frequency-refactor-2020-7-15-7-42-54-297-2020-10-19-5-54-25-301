@@ -12,7 +12,6 @@ public class WordFrequencyGame {
             try {
                 List<WordInfo> wordInfoList = getCalculateFrequency(sentence);
 
-                // Ascending Order
                 getWordInfoListInAscendingOrder(wordInfoList);
 
                 return getStringJoiner(wordInfoList);
