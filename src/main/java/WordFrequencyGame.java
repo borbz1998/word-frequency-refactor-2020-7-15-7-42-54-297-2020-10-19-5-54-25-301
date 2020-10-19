@@ -5,10 +5,7 @@ public class WordFrequencyGame {
     public static final String WHITE_SPACES = "\\s+";
 
     public String getResult(String sentence) {
-
-        if (sentence.split(WHITE_SPACES).length == 1) {
-            return sentence + " 1";
-        } else {
+        if (!isSentenceLengthEqualToOne(sentence)) {
             try {
                 List<WordInfo> wordInfoList = getCalculateFrequency(sentence);
 
@@ -19,7 +16,13 @@ public class WordFrequencyGame {
             } catch (Exception e) {
                 return "Calculate Error";
             }
+        } else {
+            return sentence + " 1";
         }
+    }
+
+    private boolean isSentenceLengthEqualToOne(String sentence) {
+        return sentence.split(WHITE_SPACES).length == 1;
     }
 
     private void getWordInfoListInAscendingOrder(List<WordInfo> wordInfoList) {
