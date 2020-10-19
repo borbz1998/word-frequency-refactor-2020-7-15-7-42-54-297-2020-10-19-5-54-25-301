@@ -8,15 +8,14 @@ import java.io.CharArrayWriter;
 import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
-    public String getResult(String inputStr){
+    public String getResult(String sentence){
 
-
-        if (inputStr.split("\\s+").length==1) {
-            return inputStr + " 1";
+        if (sentence.split("\\s+").length==1) {
+            return sentence + " 1";
         } else {
 
             try {
-                List<Input> inputList = calculateFrequency(inputStr);
+                List<Input> inputList = calculateFrequency(sentence);
 
                 inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
 
@@ -34,17 +33,17 @@ public class WordFrequencyGame {
         }
     }
 
-    private List<Input> calculateFrequency(String inputStr) {
+    private List<Input> calculateFrequency(String sentence) {
         //split the input string with 1 to n pieces of spaces
-        String[] arr = inputStr.split("\\s+");
+        String[] words = sentence.split("\\s+");
 
         List<Input> inputList = new ArrayList<>();
-        for (String s : arr) {
+        for (String s : words) {
             Input input = new Input(s, 1);
             inputList.add(input);
         }
 
-        //get the map for the next step of sizing the same word
+        //get the map for the next step of sizing the same words
         Map<String, List<Input>> map =getListMap(inputList);
 
         List<Input> list = new ArrayList<>();
@@ -62,9 +61,9 @@ public class WordFrequencyGame {
         for (Input input :  inputList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
             if (!map.containsKey(input.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getValue(), arr);
+                ArrayList words = new ArrayList<>();
+                words.add(input);
+                map.put(input.getValue(), words);
             }
 
             else {
