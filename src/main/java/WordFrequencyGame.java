@@ -17,7 +17,7 @@ public class WordFrequencyGame {
             return "Calculate Error";
         }
     }
-    
+
     private void getSortedWordInfoList(List<WordInfo> wordInfoList) {
         wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
