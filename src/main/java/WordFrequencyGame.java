@@ -1,16 +1,12 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class WordFrequencyGame {
 
     public static final String WHITE_SPACES = "\\s+";
 
-    public String getResult(String sentence){
+    public String getResult(String sentence) {
 
-        if (sentence.split(WHITE_SPACES).length==1) {
+        if (sentence.split(WHITE_SPACES).length == 1) {
             return sentence + " 1";
         } else {
 
@@ -21,10 +17,13 @@ public class WordFrequencyGame {
 
                 StringJoiner joiner = getStringJoiner(wordInfoList);
                 return joiner.toString();
+
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
+
+
     }
 
     private StringJoiner getStringJoiner(List<WordInfo> wordInfoList) {
@@ -37,39 +36,45 @@ public class WordFrequencyGame {
     }
 
     private List<WordInfo> calculateFrequency(String sentence) {
-        //split the input string with 1 to n pieces of spaces
-        String[] words = sentence.split(WHITE_SPACES);
+//        //split the input string with 1 to n pieces of spaces
+//        String[] words = sentence.split(WHITE_SPACES);
+//
+//        List<WordInfo> wordInfoList = new ArrayList<>();
+//        for (String word : words) {
+//            WordInfo wordInfo = new WordInfo(word, 1);
+//            wordInfoList.add(wordInfo);
+//        }
+//
+//        //get the map for the next step of sizing the same words
+//        Map<String, List<WordInfo>> wordInfoMap =getListMap(wordInfoList);
+//
+//        List<WordInfo> distinctInfoWords = new ArrayList<>();
+//        for (Map.Entry<String, List<WordInfo>> entry : wordInfoMap.entrySet()){
+//            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
+//            distinctInfoWords.add(wordInfo);
+//        }
+//        wordInfoList = distinctInfoWords;
+//        return wordInfoList;
 
+        List<String> words = Arrays.asList(sentence.split(WHITE_SPACES));
         List<WordInfo> wordInfoList = new ArrayList<>();
-        for (String word : words) {
-            WordInfo wordInfo = new WordInfo(word, 1);
-            wordInfoList.add(wordInfo);
+        for (String word : new HashSet<>(words)) {
+            int frequencyCount = Collections.frequency(words, word);
+            wordInfoList.add(new WordInfo(word, frequencyCount));
         }
-
-        //get the map for the next step of sizing the same words
-        Map<String, List<WordInfo>> wordInfoMap =getListMap(wordInfoList);
-
-        List<WordInfo> distinctInfoWords = new ArrayList<>();
-        for (Map.Entry<String, List<WordInfo>> entry : wordInfoMap.entrySet()){
-            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
-            distinctInfoWords.add(wordInfo);
-        }
-        wordInfoList = distinctInfoWords;
         return wordInfoList;
     }
 
 
-    private Map<String,List<WordInfo>> getListMap(List<WordInfo> inputList) {
+    private Map<String, List<WordInfo>> getListMap(List<WordInfo> inputList) {
         Map<String, List<WordInfo>> map = new HashMap<>();
-        for (WordInfo input :  inputList){
+        for (WordInfo input : inputList) {
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(input.getValue())){
+            if (!map.containsKey(input.getValue())) {
                 ArrayList words = new ArrayList<>();
                 words.add(input);
                 map.put(input.getValue(), words);
-            }
-
-            else {
+            } else {
                 map.get(input.getValue()).add(input);
             }
         }
