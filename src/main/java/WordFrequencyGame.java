@@ -5,9 +5,12 @@ import java.util.Map;
 import java.util.StringJoiner;
 
 public class WordFrequencyGame {
+
+    public static final String WHITE_SPACES = "\\s+";
+
     public String getResult(String sentence){
 
-        if (sentence.split("\\s+").length==1) {
+        if (sentence.split(WHITE_SPACES).length==1) {
             return sentence + " 1";
         } else {
 
@@ -32,7 +35,7 @@ public class WordFrequencyGame {
 
     private List<WordInfo> calculateFrequency(String sentence) {
         //split the input string with 1 to n pieces of spaces
-        String[] words = sentence.split("\\s+");
+        String[] words = sentence.split(WHITE_SPACES);
 
         List<WordInfo> wordInfoList = new ArrayList<>();
         for (String word : words) {
