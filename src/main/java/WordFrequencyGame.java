@@ -17,7 +17,7 @@ public class WordFrequencyGame {
             try {
                 List<WordInfo> inputList = calculateFrequency(sentence);
 
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                inputList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WordInfo w : inputList) {
@@ -48,8 +48,8 @@ public class WordFrequencyGame {
 
         List<WordInfo> distinctInfoWords = new ArrayList<>();
         for (Map.Entry<String, List<WordInfo>> entry : wordInfoMap.entrySet()){
-            WordInfo input = new WordInfo(entry.getKey(), entry.getValue().size());
-            distinctInfoWords.add(input);
+            WordInfo wordInfo = new WordInfo(entry.getKey(), entry.getValue().size());
+            distinctInfoWords.add(wordInfo);
         }
         wordInfoList = distinctInfoWords;
         return wordInfoList;
