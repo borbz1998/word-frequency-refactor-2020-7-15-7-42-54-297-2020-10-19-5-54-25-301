@@ -35,8 +35,8 @@ public class WordFrequencyGame {
         String[] words = sentence.split("\\s+");
 
         List<WordInfo> inputList = new ArrayList<>();
-        for (String s : words) {
-            WordInfo input = new WordInfo(s, 1);
+        for (String word : words) {
+            WordInfo input = new WordInfo(word, 1);
             inputList.add(input);
         }
 
@@ -67,8 +67,6 @@ public class WordFrequencyGame {
                 map.get(input.getValue()).add(input);
             }
         }
-
-
         return map;
     }
 
