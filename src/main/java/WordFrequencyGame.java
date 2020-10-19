@@ -9,12 +9,11 @@ public class WordFrequencyGame {
         if (sentence.split(WHITE_SPACES).length == 1) {
             return sentence + " 1";
         } else {
-
             try {
                 List<WordInfo> wordInfoList = getCalculateFrequency(sentence);
 
                 // Ascending Order
-                wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                getWordInfoListInAscendingOrder(wordInfoList);
 
                 return getStringJoiner(wordInfoList);
 
@@ -22,9 +21,10 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
 
-
-
+    private void getWordInfoListInAscendingOrder(List<WordInfo> wordInfoList) {
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
     private String getStringJoiner(List<WordInfo> wordInfoList) {
